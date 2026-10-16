@@ -1299,11 +1299,6 @@ html {
     margin-top: 48px;
 }
 
-.news-empty {
-    text-align: center;
-    color: var(--text-muted);
-}
-
 /* Stránka článku */
 .article-hero {
     background:
@@ -1491,4 +1486,22 @@ html {
         align-items: flex-start;
         padding: 28px;
     }
+}
+
+/* Kontaktní formulář – ochrana proti spamu a GDPR poznámka */
+.form-honeypot {
+    position: absolute;
+    left: -9999px;
+}
+
+.consultation-form {
+    position: relative;
+}
+
+.form-gdpr {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    text-align: center;
 }

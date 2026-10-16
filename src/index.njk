@@ -369,7 +369,8 @@ layout: base.njk
         </div>
     </section>
 
-    <!-- Aktuality (články z administrace) -->
+    <!-- Aktuality (články z administrace) – zobrazí se, jen když existuje aspoň jeden článek -->
+    {% if collections.clanky.length %}
     <section id="aktuality" class="section-padding">
         <div class="container">
             <div class="section-header">
@@ -377,7 +378,6 @@ layout: base.njk
                 <h2>Novinky z účetnictví a daní</h2>
                 <p>Změny v zákonech, nové vyhlášky a praktické tipy srozumitelně a bez zbytečného úředního jazyka.</p>
             </div>
-            {% if collections.clanky.length %}
             <div class="news-grid">
                 {% for clanek in collections.clanky | limit(3) %}
                 {% include "karta-clanku.njk" %}
@@ -388,11 +388,9 @@ layout: base.njk
                 <a href="/clanky/" class="btn btn-secondary">Všechny články</a>
             </div>
             {% endif %}
-            {% else %}
-            <p class="news-empty">Zatím zde nejsou žádné články.</p>
-            {% endif %}
         </div>
     </section>
+    {% endif %}
 
     <!-- Kontakt a Poptávka -->
     <section id="kontakt" class="section-padding bg-dark text-white">
@@ -416,25 +414,27 @@ layout: base.njk
             </div>
 
             <div class="contact-form-card">
-                <form id="consultationForm" class="consultation-form">
+                <form id="consultationForm" class="consultation-form" name="poptavka" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="poptavka">
+                    <p class="form-honeypot" aria-hidden="true"><label>Nevyplňujte: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
                     <h3>Nezávazná poptávka konzultace</h3>
                     <div class="form-group">
                         <label for="name">Vaše jméno / Firma *</label>
-                        <input type="text" id="name" required placeholder="např. Jan Novák / Firma s.r.o.">
+                        <input type="text" id="name" name="jmeno" required placeholder="např. Jan Novák / Firma s.r.o.">
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="phone">Telefon *</label>
-                            <input type="tel" id="phone" required placeholder="+420 777 ...">
+                            <input type="tel" id="phone" name="telefon" required placeholder="+420 777 ...">
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail *</label>
-                            <input type="email" id="email" required placeholder="jan@firma.cz">
+                            <input type="email" id="email" name="email" required placeholder="jan@firma.cz">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="serviceType">O jakou službu máte zájem?</label>
-                        <select id="serviceType">
+                        <select id="serviceType" name="sluzba">
                             <option value="Kompletní vedení účetnictví / daňová evidence">Kompletní vedení účetnictví / daňová evidence</option>
                             <option value="Daňové poradenství a přiznání">Daňové poradenství a přiznání</option>
                             <option value="Mzdová agenda">Mzdová agenda</option>
@@ -447,10 +447,11 @@ layout: base.njk
                     </div>
                     <div class="form-group">
                         <label for="message">Zpráva / Popis vaší situace *</label>
-                        <textarea id="message" rows="4" required placeholder="Napište nám stručně, v čem potřebujete pomoci..."></textarea>
+                        <textarea id="message" name="zprava" rows="4" required placeholder="Napište nám stručně, v čem potřebujete pomoci..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-gold btn-full">Odeslat nezávaznou poptávku</button>
-                    <p id="formResponse" class="form-response"></p>
+                    <p class="form-gdpr">Odesláním formuláře berete na vědomí, že vaše osobní údaje zpracujeme pouze za účelem vyřízení poptávky a nebudeme je předávat třetím stranám.</p>
+                    <p id="formResponse" class="form-response" role="status"></p>
                 </form>
             </div>
         </div>

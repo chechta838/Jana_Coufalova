@@ -34,12 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Poptávkový formulář – simulace odeslání
+    // Poptávkový formulář – odeslání přes Netlify Forms
     const consultationForm = document.getElementById('consultationForm');
     const formResponse = document.getElementById('formResponse');
 
     if (consultationForm) {
-        consultationForm.addEventListener('submit', function(e) {
+        const submitBtn = consultationForm.querySelector('button[type="submit"]');
+
+        consultationForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const name = document.getElementById('name').value.trim();
@@ -55,12 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
             formResponse.textContent = 'Odesílám nezávaznou poptávku...';
             formResponse.className = 'form-response';
+            submitBtn.disabled = true;
 
-            setTimeout(() => {
-                formResponse.textContent = 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám ozve nazpět.';
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(consultationForm)).toString()
+                });
+
+                if (!response.ok) {
+                    throw new Error('Odeslání selhalo: ' + response.status);
+                }
+
+                formResponse.textContent = 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám brzy ozve.';
                 formResponse.className = 'form-response success';
                 consultationForm.reset();
-            }, 1000);
+            } catch (error) {
+                formResponse.textContent = 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 602 553 925.';
+                formResponse.className = 'form-response error';
+            } finally {
+                submitBtn.disabled = false;
+            }
         });
     }
 });
