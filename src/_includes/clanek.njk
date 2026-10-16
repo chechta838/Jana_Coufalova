@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 ---
+{% from "icon.njk" import icon %}
     <article>
         <header class="article-hero">
             <div class="container article-container">
@@ -22,12 +23,12 @@ layout: base.njk
 
                 {% if priloha %}
                 <a href="{{ priloha }}" class="article-attachment" download>
-                    <span class="att-icon">📄</span>
+                    <span class="att-icon">{{ icon("file-text") }}</span>
                     <span class="att-text">
                         <strong>{{ prilohaNazev or "Stáhnout přílohu" }}</strong>
                         <small>Soubor ke stažení</small>
                     </span>
-                    <span class="att-arrow">↓</span>
+                    <span class="att-arrow">{{ icon("download") }}</span>
                 </a>
                 {% endif %}
 

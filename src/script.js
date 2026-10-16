@@ -1,4 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Hlavička – stín po odscrollování
+    const header = document.getElementById('header');
+
+    const updateHeader = () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 8);
+    };
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+
+    // Mobilní menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    const setMenu = (open) => {
+        hamburger.setAttribute('aria-expanded', String(open));
+        hamburger.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
+        mobileMenu.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+    };
+
+    hamburger.addEventListener('click', () => {
+        setMenu(hamburger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setMenu(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setMenu(false);
+    });
+
+    window.matchMedia('(min-width: 1181px)').addEventListener('change', (e) => {
+        if (e.matches) setMenu(false);
+    });
+
+    // Zvýraznění aktuální sekce v menu
+    const navLinks = [...document.querySelectorAll('.main-nav a[href^="/#"]')];
+    const sections = navLinks
+        .map(link => document.getElementById(link.getAttribute('href').slice(2)))
+        .filter(Boolean);
+
+    if (sections.length && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(link => {
+                    link.classList.toggle('is-active', link.getAttribute('href') === '/#' + entry.target.id);
+                });
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+    }
+
     // FAQ Accordion interaktivita
     const faqItems = document.querySelectorAll('.faq-item');
 
@@ -12,12 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Zavřít všechny ostatní
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 otherItem.querySelector('.faq-answer').style.maxHeight = null;
             });
 
             // Přepnout aktuální
             if (!isOpen) {
                 item.classList.add('active');
+                questionBtn.setAttribute('aria-expanded', 'true');
                 answer.style.maxHeight = answer.scrollHeight + 'px';
             }
         });

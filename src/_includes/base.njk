@@ -1,63 +1,140 @@
-<!DOCTYPE html>
+{% from "icon.njk" import icon %}<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ (title + " | JRC Consult") if title else "JRC Consult s.r.o. | Účetnictví, daně a finanční procesy pro firmy" }}</title>
-    {% if perex %}<meta name="description" content="{{ perex }}">{% endif %}
-    <link rel="stylesheet" href="/style.css">
+    <meta name="description" content="{{ perex or site.description }}">
+    <meta name="theme-color" content="#15203F">
+    <meta property="og:type" content="{{ 'article' if perex else 'website' }}">
+    <meta property="og:title" content="{{ title or 'JRC Consult s.r.o. | Účetnictví a daňové poradenství' }}">
+    <meta property="og:description" content="{{ perex or site.description }}">
+    <meta property="og:locale" content="cs_CZ">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <a class="skip-link" href="#obsah">Přeskočit na obsah</a>
 
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container top-bar-flex">
             <div class="top-contacts">
-                <a href="tel:420602553925">📞 +420 602 553 925</a>
-                <a href="mailto:j.ucetnictvi@gmail.com">✉️ j.ucetnictvi@gmail.com</a>
-                <span>📍 Wolkerova 919, Votice</span>
+                <a href="tel:+420602553925">{{ icon("phone") }}+420 602 553 925</a>
+                <a href="mailto:j.ucetnictvi@gmail.com">{{ icon("mail") }}j.ucetnictvi@gmail.com</a>
+                <span class="top-address">{{ icon("map-pin") }}Wolkerova 919, Votice</span>
             </div>
-            <div class="top-badge">
-                <span>⭐ Daňový poradce ev. č. 6079</span>
-            </div>
+            <div class="top-badge">{{ icon("award") }}Daňový poradce, ev. č. 6079</div>
         </div>
     </div>
 
     <!-- Header / Navigace -->
     <header class="site-header" id="header">
         <div class="container nav-container">
-            <a href="/" class="logo">
-                <span class="logo-name">JRC Consult</span>
-                <span class="logo-sub">Účetnictví & Daňové poradenství</span>
+            <a href="/" class="logo" aria-label="JRC Consult – úvodní stránka">
+                <span class="logo-mark" aria-hidden="true">JRC</span>
+                <span class="logo-text">
+                    <span class="logo-name">JRC Consult</span>
+                    <span class="logo-sub">Účetnictví &amp; daňové poradenství</span>
+                </span>
             </a>
-            <nav class="main-nav" id="mainNav">
+
+            <nav class="main-nav" aria-label="Hlavní navigace">
                 <a href="/#sluzby">Služby</a>
-                <a href="/#pro-koho">Pro koho jsme</a>
-                <a href="/#o-mne">O Janě Coufalové</a>
-                <a href="/#proces">Spolupráce</a>
                 <a href="/#balicky">Balíčky</a>
+                <a href="/#proces">Jak pracujeme</a>
+                <a href="/#o-mne">O nás</a>
                 {% if collections.clanky.length %}<a href="/#aktuality">Aktuality</a>{% endif %}
                 <a href="/#faq">FAQ</a>
-                <a href="/#kontakt" class="btn-nav">Nezávazná konzultace</a>
             </nav>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <div class="nav-actions">
+                <a href="/#kontakt" class="btn btn-primary btn-sm nav-cta">Nezávazná konzultace</a>
+                <button type="button" class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobilní menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="container">
+                <nav class="mobile-nav" aria-label="Mobilní navigace">
+                    <a href="/#sluzby">Služby</a>
+                    <a href="/#balicky">Balíčky</a>
+                    <a href="/#pro-koho">Pro koho jsme</a>
+                    <a href="/#proces">Jak pracujeme</a>
+                    <a href="/#o-mne">O nás</a>
+                    {% if collections.clanky.length %}<a href="/#aktuality">Aktuality</a>{% endif %}
+                    <a href="/#faq">FAQ</a>
+                </nav>
+                <a href="/#kontakt" class="btn btn-primary btn-full">Nezávazná konzultace</a>
+                <div class="mobile-contacts">
+                    <a href="tel:+420602553925">{{ icon("phone") }}+420 602 553 925</a>
+                    <a href="mailto:j.ucetnictvi@gmail.com">{{ icon("mail") }}j.ucetnictvi@gmail.com</a>
+                </div>
             </div>
         </div>
     </header>
 
+    <main id="obsah">
 {{ content | safe }}
+    </main>
 
     <!-- Footer -->
     <footer class="site-footer">
-        <div class="container footer-flex">
-            <p>&copy; 2026 JRC Consult s.r.o. Všechna práva vyhrazena. | Daňové poradenství a účetnictví Votice</p>
-            <p class="footer-note">Zapsaná v obchodním rejstříku, společník a jednatel Ing. Jana Coufalová, DiS.</p>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="/" class="logo logo-light" aria-label="JRC Consult – úvodní stránka">
+                    <span class="logo-mark" aria-hidden="true">JRC</span>
+                    <span class="logo-text">
+                        <span class="logo-name">JRC Consult</span>
+                        <span class="logo-sub">Účetnictví &amp; daňové poradenství</span>
+                    </span>
+                </a>
+                <p>Účetnictví, daně a mzdy pro firmy a OSVČ s odbornou garancí daňového poradce. Plně online, s osobním přístupem.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigace</h4>
+                <ul>
+                    <li><a href="/#sluzby">Služby</a></li>
+                    <li><a href="/#balicky">Balíčky</a></li>
+                    <li><a href="/#proces">Jak pracujeme</a></li>
+                    <li><a href="/#o-mne">O nás</a></li>
+                    {% if collections.clanky.length %}<li><a href="/clanky/">Aktuality</a></li>{% endif %}
+                    <li><a href="/#faq">Časté dotazy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Kontakt</h4>
+                <ul class="footer-contacts">
+                    <li><a href="tel:+420602553925">{{ icon("phone") }}+420 602 553 925</a></li>
+                    <li><a href="mailto:j.ucetnictvi@gmail.com">{{ icon("mail") }}j.ucetnictvi@gmail.com</a></li>
+                    <li><span>{{ icon("map-pin") }}Wolkerova 919, 259 01 Votice</span></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Fakturační údaje</h4>
+                <ul>
+                    <li>JRC Consult s.r.o.</li>
+                    <li>IČO: 11914955</li>
+                    <li>DIČ: CZ11914955</li>
+                    <li>Datová schránka: gi3k2ix</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; {{ site.year }} JRC Consult s.r.o. Všechna práva vyhrazena.</p>
+            <p>Zapsaná v obchodním rejstříku, společník a jednatel Ing. Jana Coufalová, DiS.</p>
         </div>
     </footer>
 

@@ -1,19 +1,19 @@
 ---
 layout: base.njk
 ---
- <!-- Hero Sekce -->
+{% from "icon.njk" import icon %}
+    <!-- Hero Sekce -->
     <section class="hero">
-        <div class="hero-glow"></div>
         <div class="container hero-grid">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span>Ing. Jana Coufalová, DiS. • Daňový poradce ev. č. 6079</span>
+                    {{ icon("award") }}<span>Ing. Jana Coufalová, DiS. · Daňový poradce ev. č. 6079</span>
                 </div>
                 <h1>Účetnictví, daně a finanční procesy pro firmy pod kontrolou</h1>
                 <p class="hero-lead">Transformujeme účetnictví z administrativní zátěže na nástroj pro strategické rozhodování. Pomáháme firmám, které vyrostly, ale jejich účetní a daňové procesy zaostaly.</p>
                 <div class="hero-buttons">
                     <a href="#kontakt" class="btn btn-primary">Domluvit nezávaznou konzultaci</a>
-                    <a href="tel:420602553925" class="btn btn-secondary">📞 +420 602 553 925</a>
+                    <a href="tel:+420602553925" class="btn btn-secondary">{{ icon("phone") }}+420 602 553 925</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -31,10 +31,9 @@ layout: base.njk
                 </div>
             </div>
 
-            <!-- Esteticky uspořádaná vizuální kompozice (místo poletujících oken) -->
             <div class="hero-visual-bento">
                 <div class="bento-card main-bento">
-                    <div class="b-icon-wrap">🛡️</div>
+                    <div class="b-icon-wrap">{{ icon("shield-check") }}</div>
                     <div class="b-text">
                         <h3>Odborná garance daňového poradce</h3>
                         <p>Plná odpovědnost, zastupování před úřady a pokročilá daňová optimalizace na jednom místě.</p>
@@ -42,14 +41,14 @@ layout: base.njk
                 </div>
                 <div class="bento-row">
                     <div class="bento-card sub-bento">
-                        <div class="b-icon-wrap sm">📈</div>
+                        <div class="b-icon-wrap sm">{{ icon("trending-up") }}</div>
                         <div class="b-text">
                             <h4>Rostoucí firmy</h4>
                             <p>Nastavení procesů a pravidelný reporting.</p>
                         </div>
                     </div>
-                    <div class="bento-card sub-bento gold-accent">
-                        <div class="b-icon-wrap sm">⚡</div>
+                    <div class="bento-card sub-bento">
+                        <div class="b-icon-wrap sm">{{ icon("zap") }}</div>
                         <div class="b-text">
                             <h4>Plně online</h4>
                             <p>Efektivní předávání dokladů bez papírování.</p>
@@ -70,17 +69,17 @@ layout: base.njk
             </div>
             <div class="grid-3">
                 <div class="feature-card">
-                    <div class="f-icon">🎯</div>
+                    <div class="icon-box">{{ icon("target") }}</div>
                     <h3>Daňový poradce na vaší straně</h3>
                     <p>Oproti běžným účetním neseme plnou odbornou garanci, řešíme daňovou optimalizaci a zastupujeme vás na úřadech.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="f-icon">⚙️</div>
+                    <div class="icon-box">{{ icon("sliders") }}</div>
                     <h3>Nastavení procesů při růstu</h3>
                     <p>Specializujeme se na firmy, které rychle vyrostly a potřebují dát pořádek do interních účetních a reportovacích procesů.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="f-icon">💻</div>
+                    <div class="icon-box">{{ icon("monitor") }}</div>
                     <h3>Plně online a efektivně</h3>
                     <p>Bez papírování a zbytečných schůzek. Doklady předáváte elektronicky, čísla a analýzy máte kdykoliv po ruce.</p>
                 </div>
@@ -100,7 +99,7 @@ layout: base.njk
                 <div class="service-box">
                     <div class="s-top">
                         <span class="s-num">01</span>
-                        <div class="s-ico">📊</div>
+                        <div class="s-ico">{{ icon("bar-chart") }}</div>
                     </div>
                     <h3>Účetnictví</h3>
                     <ul>
@@ -113,7 +112,7 @@ layout: base.njk
                 <div class="service-box">
                     <div class="s-top">
                         <span class="s-num">02</span>
-                        <div class="s-ico">👥</div>
+                        <div class="s-ico">{{ icon("users") }}</div>
                     </div>
                     <h3>Mzdy a personalistika</h3>
                     <ul>
@@ -126,7 +125,7 @@ layout: base.njk
                 <div class="service-box">
                     <div class="s-top">
                         <span class="s-num">03</span>
-                        <div class="s-ico">📑</div>
+                        <div class="s-ico">{{ icon("file-text") }}</div>
                     </div>
                     <h3>Daně a optimalizace</h3>
                     <ul>
@@ -139,7 +138,7 @@ layout: base.njk
                 <div class="service-box">
                     <div class="s-top">
                         <span class="s-num">04</span>
-                        <div class="s-ico">🏛️</div>
+                        <div class="s-ico">{{ icon("landmark") }}</div>
                     </div>
                     <h3>Zastupování na úřadech</h3>
                     <ul>
@@ -152,7 +151,7 @@ layout: base.njk
                 <div class="service-box">
                     <div class="s-top">
                         <span class="s-num">05</span>
-                        <div class="s-ico">💡</div>
+                        <div class="s-ico">{{ icon("lightbulb") }}</div>
                     </div>
                     <h3>Firemní poradenství</h3>
                     <ul>
@@ -170,21 +169,24 @@ layout: base.njk
     <section id="pro-koho" class="section-padding bg-dark text-white">
         <div class="container">
             <div class="section-header dark-header">
-                <span class="sec-tag-gold">Cíloví klienti</span>
+                <span class="sec-tag sec-tag-light">Cíloví klienti</span>
                 <h2>Pro koho je naše spolupráce ideální?</h2>
                 <p>Pomáháme subjektům, které vyžadují spolehlivost, odbornost a strategický pohled na čísla.</p>
             </div>
             <div class="grid-3">
                 <div class="target-card">
-                    <h4>🚀 Rostoucí společnosti</h4>
+                    <div class="icon-box icon-box-dark">{{ icon("trending-up") }}</div>
+                    <h4>Rostoucí společnosti</h4>
                     <p>Firmy, které rychle vyrostly a potřebují stabilizovat účetní procesy, zavést reporting a odstranit administrativní brzdy.</p>
                 </div>
                 <div class="target-card">
-                    <h4>🏢 Malé a střední s.r.o.</h4>
+                    <div class="icon-box icon-box-dark">{{ icon("building") }}</div>
+                    <h4>Malé a střední s.r.o.</h4>
                     <p>Podnikatelé, kteří chtějí mít jistotu bezchybného účetnictví, včasných přiznání a plné podpory daňového poradce.</p>
                 </div>
                 <div class="target-card">
-                    <h4>💼 OSVČ a plátci DPH</h4>
+                    <div class="icon-box icon-box-dark">{{ icon("briefcase") }}</div>
+                    <h4>OSVČ a plátci DPH</h4>
                     <p>Aktivní živnostníci a plátci DPH, kteří nechtějí ztrácet čas papírováním a hledají profesionální a moderní přístup.</p>
                 </div>
             </div>
@@ -195,8 +197,7 @@ layout: base.njk
     <section id="o-mne" class="section-padding">
         <div class="container about-grid">
             <div class="about-image-wrapper">
-                <!-- Zde je nová ilustrovaná / kreslená postava -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Ing. Jana Coufalová" class="about-illus-img">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Ing. Jana Coufalová" class="about-illus-img" loading="lazy" width="800" height="900">
                 <div class="about-badge-floating">
                     <strong>15+ let</strong>
                     <span>Praxe v oboru</span>
@@ -208,9 +209,9 @@ layout: base.njk
                 <p class="about-subtitle">Daňový poradce (ev. č. 6079) a jednatelka JRC Consult s.r.o.</p>
                 <p>„Věříme, že účetnictví by pro firmu nemělo být jen nutným zlem pro finanční úřad. Naším cílem je poskytovat klientům přesný kompas v číslech, díky kterému mohou dělat správná rozhodnutí a bezpečně rozvíjet své podnikání.“</p>
                 <ul class="about-list">
-                    <li>✔ Odborné zkoušky a registrace u Komory daňových poradců ČR</li>
-                    <li>✔ Důraz na individuální přístup, diskrétnost a proaktivní komunikaci</li>
-                    <li>✔ Zkušenosti s vedením firem různých velikostí a oborů</li>
+                    <li>{{ icon("check") }}Odborné zkoušky a registrace u Komory daňových poradců ČR</li>
+                    <li>{{ icon("check") }}Důraz na individuální přístup, diskrétnost a proaktivní komunikaci</li>
+                    <li>{{ icon("check") }}Zkušenosti s vedením firem různých velikostí a oborů</li>
                 </ul>
             </div>
         </div>
@@ -350,19 +351,19 @@ layout: base.njk
             </div>
             <div class="faq-accordion">
                 <div class="faq-item">
-                    <button class="faq-question">Můžete převzít účetnictví i v průběhu probíhajícího roku? <span class="faq-icon">+</span></button>
+                    <button type="button" class="faq-question" aria-expanded="false">Můžete převzít účetnictví i v průběhu probíhajícího roku? <span class="faq-icon">{{ icon("plus") }}</span></button>
                     <div class="faq-answer"><p>Ano, účetnictví a daňovou evidenci lze bez problémů převzít kdykoliv během roku. Zajistíme hladký přechod a návaznost na předchozí období.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">Jak probíhá předávání dokladů? Musím chodit osobně? <span class="faq-icon">+</span></button>
+                    <button type="button" class="faq-question" aria-expanded="false">Jak probíhá předávání dokladů? Musím chodit osobně? <span class="faq-icon">{{ icon("plus") }}</span></button>
                     <div class="faq-answer"><p>Vše lze řešit plně elektronicky (skeny, PDF, napojení na systémy). Nemusíte nikam jezdit, šetříme váš čas.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">Jaký je rozdíl mezi účetní a daňovým poradcem? <span class="faq-icon">+</span></button>
+                    <button type="button" class="faq-question" aria-expanded="false">Jaký je rozdíl mezi účetní a daňovým poradcem? <span class="faq-icon">{{ icon("plus") }}</span></button>
                     <div class="faq-answer"><p>Daňový poradce má vyšší zákonnou odpovědnost, skládá státní zkoušky u Komory daňových poradců a nese plnou profesní záruku za správnost odvedených daní a zastupování.</p></div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question">Jak se stanovuje cena za vedení účetnictví? <span class="faq-icon">+</span></button>
+                    <button type="button" class="faq-question" aria-expanded="false">Jak se stanovuje cena za vedení účetnictví? <span class="faq-icon">{{ icon("plus") }}</span></button>
                     <div class="faq-answer"><p>Cena se odvíjí individuálně podle počtu vydaných a přijatých dokladů, počtu zaměstnanců, plátcovství DPH a rozsahu požadovaného poradenství. Rádi vám po úvodním rozhovoru připravíme nabídku na míru.</p></div>
                 </div>
             </div>
@@ -396,19 +397,19 @@ layout: base.njk
     <section id="kontakt" class="section-padding bg-dark text-white">
         <div class="container contact-grid">
             <div class="contact-info">
-                <span class="sec-tag-gold">Kontaktujte nás</span>
+                <span class="sec-tag sec-tag-light">Kontaktujte nás</span>
                 <h2>Začněte mít své finance pevně pod kontrolou</h2>
                 <p>Ozvěte se nám a domluvte si nezávaznou úvodní konzultaci. Rádi probereme vaše potřeby.</p>
                 
                 <div class="contact-card-box">
                     <strong>JRC Consult s.r.o.</strong>
                     <ul class="contact-details-list">
-                        <li><span>👤</span> <div><strong>Ing. Jana Coufalová, DiS.</strong><small>daňový poradce ev. č. 6079</small></div></li>
-                        <li><span>📍</span> <div><strong>Sídlo:</strong> Wolkerova 919, 259 01 Votice</div></li>
-                        <li><span>📞</span> <div><strong>Telefon:</strong> <a href="tel:420602553925">+420 602 553 925</a></div></li>
-                        <li><span>✉️</span> <div><strong>E-mail:</strong> <a href="mailto:j.ucetnictvi@gmail.com">j.ucetnictvi@gmail.com</a></div></li>
-                        <li><span>📄</span> <div><strong>IČO:</strong> 11914955 | <strong>DIČ:</strong> CZ11914955</div></li>
-                        <li><span>🏢</span> <div><strong>Datová schránka:</strong> gi3k2ix</div></li>
+                        <li><span class="cd-icon">{{ icon("user") }}</span><div><strong>Ing. Jana Coufalová, DiS.</strong><small>daňový poradce ev. č. 6079</small></div></li>
+                        <li><span class="cd-icon">{{ icon("map-pin") }}</span><div><strong>Sídlo:</strong> Wolkerova 919, 259 01 Votice</div></li>
+                        <li><span class="cd-icon">{{ icon("phone") }}</span><div><strong>Telefon:</strong> <a href="tel:+420602553925">+420 602 553 925</a></div></li>
+                        <li><span class="cd-icon">{{ icon("mail") }}</span><div><strong>E-mail:</strong> <a href="mailto:j.ucetnictvi@gmail.com">j.ucetnictvi@gmail.com</a></div></li>
+                        <li><span class="cd-icon">{{ icon("file-text") }}</span><div><strong>IČO:</strong> 11914955 | <strong>DIČ:</strong> CZ11914955</div></li>
+                        <li><span class="cd-icon">{{ icon("inbox") }}</span><div><strong>Datová schránka:</strong> gi3k2ix</div></li>
                     </ul>
                 </div>
             </div>
@@ -449,7 +450,7 @@ layout: base.njk
                         <label for="message">Zpráva / Popis vaší situace *</label>
                         <textarea id="message" name="zprava" rows="4" required placeholder="Napište nám stručně, v čem potřebujete pomoci..."></textarea>
                     </div>
-                    <button type="submit" class="btn btn-gold btn-full">Odeslat nezávaznou poptávku</button>
+                    <button type="submit" class="btn btn-primary btn-full">Odeslat nezávaznou poptávku</button>
                     <p class="form-gdpr">Odesláním formuláře berete na vědomí, že vaše osobní údaje zpracujeme pouze za účelem vyřízení poptávky a nebudeme je předávat třetím stranám.</p>
                     <p id="formResponse" class="form-response" role="status"></p>
                 </form>
