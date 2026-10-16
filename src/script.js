@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Poptávkový formulář – odeslání přes Netlify Forms
+    // Poptávkový formulář – odeslání e-mailem přes Formspree
     const consultationForm = document.getElementById('consultationForm');
     const formResponse = document.getElementById('formResponse');
 
@@ -55,19 +55,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            if (consultationForm.action.includes('DOPLNIT')) {
+                formResponse.textContent = 'Formulář zatím není napojený. Zavolejte nám prosím na +420 602 553 925.';
+                formResponse.className = 'form-response error';
+                return;
+            }
+
             formResponse.textContent = 'Odesílám nezávaznou poptávku...';
             formResponse.className = 'form-response';
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch('/', {
+                const response = await fetch(consultationForm.action, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(consultationForm)).toString()
+                    body: new FormData(consultationForm),
+                    headers: { Accept: 'application/json' }
                 });
 
                 if (!response.ok) {
-                    throw new Error('Odeslání selhalo: ' + response.status);
+                    throw new Error('Odeslání se nezdařilo: ' + response.status);
                 }
 
                 formResponse.textContent = 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám brzy ozve.';
