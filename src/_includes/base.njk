@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ (title + " | JRC Consult") if title else "JRC Consult s.r.o. | Účetnictví, daně a finanční procesy pro firmy" }}</title>
+    {% if perex %}<meta name="description" content="{{ perex }}">{% endif %}
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-flex">
+            <div class="top-contacts">
+                <a href="tel:420602553925">📞 +420 602 553 925</a>
+                <a href="mailto:j.ucetnictvi@gmail.com">✉️ j.ucetnictvi@gmail.com</a>
+                <span>📍 Wolkerova 919, Votice</span>
+            </div>
+            <div class="top-badge">
+                <span>⭐ Daňový poradce ev. č. 6079</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigace -->
+    <header class="site-header" id="header">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <span class="logo-name">JRC Consult</span>
+                <span class="logo-sub">Účetnictví & Daňové poradenství</span>
+            </a>
+            <nav class="main-nav" id="mainNav">
+                <a href="/#sluzby">Služby</a>
+                <a href="/#pro-koho">Pro koho jsme</a>
+                <a href="/#o-mne">O Janě Coufalové</a>
+                <a href="/#proces">Spolupráce</a>
+                <a href="/#balicky">Balíčky</a>
+                <a href="/#aktuality">Aktuality</a>
+                <a href="/#faq">FAQ</a>
+                <a href="/#kontakt" class="btn-nav">Nezávazná konzultace</a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+{{ content | safe }}
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-flex">
+            <p>&copy; 2026 JRC Consult s.r.o. Všechna práva vyhrazena. | Daňové poradenství a účetnictví Votice</p>
+            <p class="footer-note">Zapsaná v obchodním rejstříku, společník a jednatel Ing. Jana Coufalová, DiS.</p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>

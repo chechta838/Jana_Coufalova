@@ -1,0 +1,63 @@
+# Ostrý provoz: přihlášení do administrace přes GitHub
+backend:
+  name: github
+  repo: chechta838/Jana_Coufalova
+  branch: main
+
+# Lokální zkoušení: administrace zapisuje přímo do složky projektu (npm start)
+local_backend: true
+
+locale: cs
+
+media_folder: src/uploads
+public_folder: /uploads
+
+collections:
+  - name: clanky
+    label: Články
+    label_singular: článek
+    description: Aktuality, vyhlášky a novinky zobrazené na webu.
+    folder: src/clanky
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} | {{date}}"
+    sortable_fields: [date, title]
+    view_filters:
+      - { label: Vyhlášky a legislativa, field: kategorie, pattern: Vyhlášky a legislativa }
+      - { label: Daně, field: kategorie, pattern: Daně }
+      - { label: Mzdy, field: kategorie, pattern: Mzdy }
+      - { label: Účetnictví, field: kategorie, pattern: Účetnictví }
+      - { label: Novinky, field: kategorie, pattern: Novinky }
+    fields:
+      - label: Nadpis
+        name: title
+        widget: string
+      - label: Datum zveřejnění
+        name: date
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: D. M. YYYY
+        time_format: false
+      - label: Kategorie
+        name: kategorie
+        widget: select
+        options: [Vyhlášky a legislativa, Daně, Mzdy, Účetnictví, Novinky]
+        default: Novinky
+      - label: Krátký úvod
+        name: perex
+        widget: text
+        hint: Jedna až dvě věty. Zobrazí se na kartě článku na úvodní stránce.
+      - label: Text článku
+        name: body
+        widget: markdown
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: [image]
+      - label: Příloha (např. PDF s vyhláškou)
+        name: priloha
+        widget: file
+        required: false
+      - label: Název přílohy
+        name: prilohaNazev
+        widget: string
+        required: false
+        hint: Např. „Vyhláška č. 123/2026 Sb. (PDF)“. Když necháte prázdné, zobrazí se „Stáhnout přílohu“.

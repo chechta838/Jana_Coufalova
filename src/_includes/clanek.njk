@@ -1,0 +1,43 @@
+---
+layout: base.njk
+---
+    <article>
+        <header class="article-hero">
+            <div class="container article-container">
+                <a href="/#aktuality" class="article-back">← Zpět na aktuality</a>
+                <div class="news-meta">
+                    <span class="news-cat">{{ kategorie }}</span>
+                    <time datetime="{{ page.date.toISOString().slice(0, 10) }}">{{ page.date | datumCz }}</time>
+                </div>
+                <h1>{{ title }}</h1>
+                {% if perex %}<p class="article-perex">{{ perex }}</p>{% endif %}
+            </div>
+        </header>
+
+        <div class="section-padding article-body-wrap">
+            <div class="container article-container">
+                <div class="article-body">
+                    {{ content | safe }}
+                </div>
+
+                {% if priloha %}
+                <a href="{{ priloha }}" class="article-attachment" download>
+                    <span class="att-icon">📄</span>
+                    <span class="att-text">
+                        <strong>{{ prilohaNazev or "Stáhnout přílohu" }}</strong>
+                        <small>Soubor ke stažení</small>
+                    </span>
+                    <span class="att-arrow">↓</span>
+                </a>
+                {% endif %}
+
+                <div class="article-cta">
+                    <div>
+                        <h3>Potřebujete s tím pomoci?</h3>
+                        <p>Probereme, co pro vás tato změna znamená, a navrhneme další postup.</p>
+                    </div>
+                    <a href="/#kontakt" class="btn btn-outline-light">Nezávazná konzultace</a>
+                </div>
+            </div>
+        </div>
+    </article>

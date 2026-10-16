@@ -1,0 +1,9 @@
+<a href="{{ clanek.url }}" class="news-card">
+    <div class="news-meta">
+        <span class="news-cat">{{ clanek.data.kategorie }}</span>
+        <time datetime="{{ clanek.date.toISOString().slice(0, 10) }}">{{ clanek.date | datumCz }}</time>
+    </div>
+    <h3>{{ clanek.data.title }}</h3>
+    <p>{{ clanek.data.perex }}</p>
+    <span class="news-link">Číst článek <span aria-hidden="true">→</span></span>
+</a>
