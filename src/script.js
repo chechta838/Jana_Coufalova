@@ -91,6 +91,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Souhlas s cookies a Google Analytics (načte se až po souhlasu)
+    const cookieBanner = document.getElementById('cookieBanner');
+
+    if (cookieBanner) {
+        const gaId = cookieBanner.dataset.gaId;
+        const CONSENT_KEY = 'cookie-consent';
+
+        const readConsent = () => {
+            try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+        };
+        const saveConsent = (value) => {
+            try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* prohlížeč úložiště nepovoluje */ }
+        };
+
+        const loadAnalytics = () => {
+            if (window.gaLoaded) return;
+            window.gaLoaded = true;
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaId);
+            document.head.appendChild(script);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { window.dataLayer.push(arguments); };
+            window.gtag('js', new Date());
+            window.gtag('config', gaId);
+        };
+
+        const removeAnalyticsCookies = () => {
+            const host = location.hostname;
+            const domains = ['', host, '.' + host, '.' + host.split('.').slice(-2).join('.')];
+            document.cookie.split(';').map(c => c.split('=')[0].trim()).filter(name => name.startsWith('_ga')).forEach(name => {
+                domains.forEach(domain => {
+                    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + (domain ? '; domain=' + domain : '');
+                });
+            });
+        };
+
+        const showBanner = () => {
+            cookieBanner.hidden = false;
+            requestAnimationFrame(() => cookieBanner.classList.add('is-visible'));
+        };
+        const hideBanner = () => {
+            cookieBanner.classList.remove('is-visible');
+            cookieBanner.hidden = true;
+        };
+
+        const consent = readConsent();
+        if (consent === 'granted') {
+            loadAnalytics();
+        } else if (!consent) {
+            showBanner();
+        }
+
+        cookieBanner.querySelector('[data-consent="accept"]').addEventListener('click', () => {
+            saveConsent('granted');
+            hideBanner();
+            loadAnalytics();
+        });
+
+        cookieBanner.querySelector('[data-consent="reject"]').addEventListener('click', () => {
+            const wasGranted = readConsent() === 'granted';
+            saveConsent('denied');
+            hideBanner();
+            removeAnalyticsCookies();
+            // Už načtené měření nejde zastavit jinak než novým načtením stránky
+            if (wasGranted && window.gaLoaded) location.reload();
+        });
+
+        document.querySelectorAll('[data-cookie-settings]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showBanner();
+            });
+        });
+    }
+
     // Poptávkový formulář – odeslání e-mailem přes Formspree
     const consultationForm = document.getElementById('consultationForm');
     const formResponse = document.getElementById('formResponse');

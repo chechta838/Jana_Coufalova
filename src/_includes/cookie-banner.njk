@@ -1,0 +1,13 @@
+{% if site.gaId %}
+    <!-- Souhlas s cookies – Google Analytics se načte až po kliknutí na „Přijmout“ -->
+    <div class="cookie-banner" id="cookieBanner" data-ga-id="{{ site.gaId }}" role="dialog" aria-label="Souhlas s cookies" hidden>
+        <div class="cb-text">
+            <strong>Používáme cookies</strong>
+            <p>Rádi bychom měřili návštěvnost webu pomocí Google Analytics, abychom ho mohli zlepšovat. Analytické cookies použijeme jen s vaším souhlasem. <a href="/cookies/">Více informací</a></p>
+        </div>
+        <div class="cb-actions">
+            <button type="button" class="btn cb-btn cb-reject" data-consent="reject">Odmítnout</button>
+            <button type="button" class="btn cb-btn cb-accept" data-consent="accept">Přijmout</button>
+        </div>
+    </div>
+{% endif %}

@@ -1887,3 +1887,99 @@ body.menu-open {
 .step-card {
     padding: 34px 28px;
 }
+
+/* Lišta se souhlasem s cookies */
+.cookie-banner {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 640px;
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 24px 60px rgba(11, 19, 43, 0.18);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-banner.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.cb-text strong {
+    display: block;
+    margin-bottom: 4px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--navy-dark);
+}
+
+.cb-text p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.cb-text a {
+    color: var(--navy-dark);
+    font-weight: 600;
+}
+
+.cb-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.cb-btn {
+    padding: 11px 20px;
+    font-size: 0.9rem;
+}
+
+.cb-accept {
+    background: var(--navy-dark);
+    color: var(--white);
+}
+
+.cb-accept:hover {
+    background: var(--navy-mid);
+}
+
+.cb-reject {
+    background: transparent;
+    color: var(--navy-dark);
+    border: 2px solid var(--border);
+}
+
+.cb-reject:hover {
+    border-color: var(--navy-dark);
+}
+
+.footer-legal a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    color: var(--white);
+}
+
+@media (max-width: 600px) {
+    .cookie-banner {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .cb-actions .cb-btn {
+        flex: 1;
+    }
+}
