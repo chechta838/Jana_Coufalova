@@ -209,6 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error('Odeslání se nezdařilo: ' + response.status);
                 }
 
+                // Konverze pro Google Analytics (odešle se jen se souhlasem s cookies)
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', 'generate_lead', {
+                        form_name: 'poptavka',
+                        sluzba: document.getElementById('serviceType')?.value || ''
+                    });
+                }
+
                 formResponse.textContent = 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám brzy ozve.';
                 formResponse.className = 'form-response success';
                 consultationForm.reset();
