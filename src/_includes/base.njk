@@ -133,9 +133,12 @@
 
         <div class="container footer-bottom">
             <p>&copy; {{ site.year }} JRC Consult s.r.o. | Všechna práva vyhrazena</p>
+            {% if site.gaId %}<p class="footer-legal"><a href="/cookies/">Zásady cookies</a> · <a href="#" data-cookie-settings>Nastavení cookies</a></p>{% endif %}
             <p>Zapsaná v obchodním rejstříku, společník a jednatel Ing. Jana Coufalová, DiS.</p>
         </div>
     </footer>
+
+{% include "cookie-banner.njk" %}
 
     <script src="/script.js"></script>
 </body>
