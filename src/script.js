@@ -167,65 +167,69 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Poptávkový formulář – odeslání e-mailem přes Formspree
-    const consultationForm = document.getElementById('consultationForm');
-    const formResponse = document.getElementById('formResponse');
+    // Formuláře (poptávka a rychlý dotaz) – odeslání e-mailem přes Formspree
+    const formTexts = {
+        poptavka: {
+            sending: 'Odesílám nezávaznou poptávku...',
+            success: 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám brzy ozve.',
+            error: 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 602 553 925.'
+        },
+        rychly_dotaz: {
+            sending: 'Odesílám dotaz...',
+            success: 'Děkujeme! Dotaz jsme přijali a odpověď vám pošleme e-mailem.',
+            error: 'Dotaz se nepodařilo odeslat. Zkuste to prosím znovu, nebo napište na j.ucetnictvi@gmail.com.'
+        }
+    };
 
-    if (consultationForm) {
-        const submitBtn = consultationForm.querySelector('button[type="submit"]');
+    document.querySelectorAll('.js-formspree').forEach(form => {
+        const formName = form.dataset.formName || 'poptavka';
+        const texts = formTexts[formName] || formTexts.poptavka;
+        const response = form.querySelector('.form-response');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
-        consultationForm.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const name = document.getElementById('name').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (!name || !phone || !email || !message) {
-                formResponse.textContent = 'Prosím vyplňte všechna povinná pole.';
-                formResponse.className = 'form-response error';
+            if (!form.checkValidity()) {
+                response.textContent = 'Prosím vyplňte všechna povinná pole.';
+                response.className = 'form-response error';
+                form.reportValidity();
                 return;
             }
 
-            if (consultationForm.action.includes('DOPLNIT')) {
-                formResponse.textContent = 'Formulář zatím není napojený. Zavolejte nám prosím na +420 602 553 925.';
-                formResponse.className = 'form-response error';
-                return;
-            }
-
-            formResponse.textContent = 'Odesílám nezávaznou poptávku...';
-            formResponse.className = 'form-response';
+            response.textContent = texts.sending;
+            response.className = 'form-response';
             submitBtn.disabled = true;
 
             try {
-                const response = await fetch(consultationForm.action, {
+                const res = await fetch(form.action, {
                     method: 'POST',
-                    body: new FormData(consultationForm),
+                    body: new FormData(form),
                     headers: { Accept: 'application/json' }
                 });
 
-                if (!response.ok) {
-                    throw new Error('Odeslání se nezdařilo: ' + response.status);
+                if (!res.ok) {
+                    throw new Error('Odeslání se nezdařilo: ' + res.status);
                 }
 
                 // Konverze pro Google Analytics (odešle se jen se souhlasem s cookies)
                 if (typeof window.gtag === 'function') {
                     window.gtag('event', 'generate_lead', {
-                        form_name: 'poptavka',
-                        sluzba: document.getElementById('serviceType')?.value || ''
+                        form_name: formName,
+                        sluzba: form.querySelector('[name="sluzba"]')?.value || '',
+                        obrat: form.querySelector('[name="obrat"]')?.value || ''
                     });
                 }
 
-                formResponse.textContent = 'Děkujeme! Vaše poptávka byla úspěšně odeslána. Ing. Jana Coufalová se vám brzy ozve.';
-                formResponse.className = 'form-response success';
-                consultationForm.reset();
+                response.textContent = texts.success;
+                response.className = 'form-response success';
+                form.reset();
             } catch (error) {
-                formResponse.textContent = 'Poptávku se nepodařilo odeslat. Zkuste to prosím znovu, nebo nám zavolejte na +420 602 553 925.';
-                formResponse.className = 'form-response error';
+                response.textContent = texts.error;
+                response.className = 'form-response error';
             } finally {
                 submitBtn.disabled = false;
             }
         });
-    }
+    });
 });

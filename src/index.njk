@@ -20,29 +20,27 @@ layout: base.njk
             </div>
         </div>
 
-        <!-- Ilustrační náhled online spolupráce -->
+        <!-- Rozcestník -->
         <div class="container">
-            <div class="hero-visual" aria-hidden="true">
-                <div class="hv-window">
-                    <div class="hv-bar"><span></span><span></span><span></span><em>Klientský přehled · JRC Consult</em></div>
-                    <div class="hv-body">
-                        <div class="hv-chart">
-                            <div class="hv-chart-head">
-                                <strong>Přehled hospodaření</strong>
-                                <span>Výnosy a náklady po měsících</span>
-                            </div>
-                            <div class="hv-bars">
-                                <i style="--h:42%"></i><i style="--h:58%"></i><i style="--h:50%"></i><i style="--h:66%"></i><i style="--h:61%"></i><i style="--h:74%"></i><i style="--h:70%"></i><i style="--h:86%"></i><i style="--h:80%"></i>
-                            </div>
-                        </div>
-                        <ul class="hv-tasks">
-                            <li><span class="ok">{{ icon("check") }}</span><div><strong>Přiznání k DPH</strong><small>podáno elektronicky</small></div></li>
-                            <li><span class="ok">{{ icon("check") }}</span><div><strong>Kontrolní hlášení</strong><small>odesláno včas</small></div></li>
-                            <li><span class="ok">{{ icon("check") }}</span><div><strong>Mzdy zaměstnanců</strong><small>zpracovány a odeslány</small></div></li>
-                            <li><span class="wait">{{ icon("clock") }}</span><div><strong>Nové doklady</strong><small>zpracováváme</small></div></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="hero-paths">
+                <a href="#sluzby" class="path-card">
+                    <span class="path-ico">{{ icon("bar-chart") }}</span>
+                    <h3>Účetnictví a mzdy</h3>
+                    <p>Podvojné účetnictví, daňová evidence a mzdy pro s.r.o. i OSVČ.</p>
+                    <span class="path-link">Služby {{ icon("arrow-right") }}</span>
+                </a>
+                <a href="#sluzby" class="path-card path-card-featured">
+                    <span class="path-ico">{{ icon("file-text") }}</span>
+                    <h3>Daňové poradenství a strategie</h3>
+                    <p>Přiznání, optimalizace a zastupování s garancí daňového poradce.</p>
+                    <span class="path-link">Služby {{ icon("arrow-right") }}</span>
+                </a>
+                <a href="#dotaz" class="path-card">
+                    <span class="path-ico">{{ icon("mail") }}</span>
+                    <h3>Rychlý dotaz</h3>
+                    <p>Zeptejte se přímo daňové poradkyně. Diskrétně, e-mailem.</p>
+                    <span class="path-link">Položit dotaz {{ icon("arrow-right") }}</span>
+                </a>
             </div>
         </div>
     </section>
@@ -119,13 +117,13 @@ layout: base.njk
                 </article>
                 <article class="service-card">
                     <span class="sc-ico">{{ icon("file-text") }}</span>
-                    <h3>Daně a optimalizace</h3>
+                    <h3>Daňové poradenství a strategie</h3>
                     <ul>
                         <li>Přiznání DPPO, DPFO a DPH</li>
+                        <li>Daňová strategie a optimalizace</li>
                         <li>Kontrolní a souhrnná hlášení</li>
-                        <li>Daňová optimalizace</li>
                     </ul>
-                    <a href="#kontakt" class="link-arrow" data-plan="Daňové poradenství a přiznání">Mám zájem {{ icon("arrow-right") }}</a>
+                    <a href="#kontakt" class="link-arrow" data-plan="Daňové poradenství a strategie">Mám zájem {{ icon("arrow-right") }}</a>
                 </article>
                 <article class="service-card">
                     <span class="sc-ico">{{ icon("users") }}</span>
@@ -145,7 +143,7 @@ layout: base.njk
                         <li>Řešení kontrol</li>
                         <li>Zastupování na základě plné moci</li>
                     </ul>
-                    <a href="#kontakt" class="link-arrow" data-plan="Daňové poradenství a přiznání">Mám zájem {{ icon("arrow-right") }}</a>
+                    <a href="#kontakt" class="link-arrow" data-plan="Daňové poradenství a strategie">Mám zájem {{ icon("arrow-right") }}</a>
                 </article>
                 <article class="service-card">
                     <span class="sc-ico">{{ icon("lightbulb") }}</span>
@@ -170,63 +168,6 @@ layout: base.njk
                     <span class="cta-note"><span class="pulse" aria-hidden="true"></span>Ozveme se vám co nejdříve</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Balíčky -->
-    <section class="section" id="balicky">
-        <div class="container">
-            <div class="sec-head">
-                <span class="eyebrow">Balíčky služeb</span>
-                <h2>Vyberte si balíček <span class="hl">na míru</span></h2>
-                <p>Přehledné měsíční paušály bez skrytých poplatků. Balíček můžete kdykoliv rozšířit podle toho, jak roste vaše firma.</p>
-            </div>
-            <div class="pricing">
-                <div class="price-card">
-                    <span class="price-name">Starter</span>
-                    <p class="price-desc">Pro OSVČ a začínající podnikatele, kteří chtějí mít klid od papírování.</p>
-                    <div class="price-amount"><span class="price-from">od</span> 1 900 <span class="price-unit">Kč / měsíc</span></div>
-                    <ul class="price-list">
-                        <li>{{ icon("check") }}Daňová evidence do 30 dokladů měsíčně</li>
-                        <li>{{ icon("check") }}Roční daňové přiznání k dani z příjmů</li>
-                        <li>{{ icon("check") }}Přehledy pro OSSZ a zdravotní pojišťovnu</li>
-                        <li>{{ icon("check") }}Online předávání dokladů</li>
-                        <li>{{ icon("check") }}Podpora e-mailem do 48 hodin</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-outline btn-full" data-plan="Balíček Starter">Mám zájem o Starter</a>
-                </div>
-                <div class="price-card price-featured">
-                    <span class="price-badge">Nejoblíbenější</span>
-                    <span class="price-name">Pro</span>
-                    <p class="price-desc">Pro malé a střední s.r.o. a plátce DPH, kteří chtějí jistotu i přehled.</p>
-                    <div class="price-amount"><span class="price-from">od</span> 4 900 <span class="price-unit">Kč / měsíc</span></div>
-                    <ul class="price-list">
-                        <li>{{ icon("check") }}<span><strong>Vše ze Starter</strong>, navíc:</span></li>
-                        <li>{{ icon("check") }}Podvojné účetnictví do 120 dokladů měsíčně</li>
-                        <li>{{ icon("check") }}Přiznání k DPH a kontrolní hlášení</li>
-                        <li>{{ icon("check") }}Mzdová agenda až pro 5 zaměstnanců</li>
-                        <li>{{ icon("check") }}Čtvrtletní přehled hospodaření</li>
-                        <li>{{ icon("check") }}Telefonická podpora v pracovní dny</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-accent btn-full" data-plan="Balíček Pro">Mám zájem o Pro</a>
-                </div>
-                <div class="price-card">
-                    <span class="price-name">Pro Max</span>
-                    <p class="price-desc">Pro rostoucí firmy, které chtějí vlastní finanční oddělení bez nákladů na něj.</p>
-                    <div class="price-amount"><span class="price-from">od</span> 9 900 <span class="price-unit">Kč / měsíc</span></div>
-                    <ul class="price-list">
-                        <li>{{ icon("check") }}<span><strong>Vše z Pro</strong>, navíc:</span></li>
-                        <li>{{ icon("check") }}Neomezený počet dokladů</li>
-                        <li>{{ icon("check") }}Mzdy bez omezení počtu zaměstnanců</li>
-                        <li>{{ icon("check") }}Měsíční reporting a cash-flow plán</li>
-                        <li>{{ icon("check") }}Zastupování na úřadech a při kontrolách</li>
-                        <li>{{ icon("check") }}Osobní konzultace 1× měsíčně</li>
-                        <li>{{ icon("check") }}Prioritní podpora do 4 hodin</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-outline btn-full" data-plan="Balíček Pro Max">Mám zájem o Pro Max</a>
-                </div>
-            </div>
-            <p class="pricing-note">Uvedené ceny jsou orientační a bez DPH. Přesnou nabídku připravíme po nezávazné konzultaci podle rozsahu vaší agendy.</p>
         </div>
     </section>
 
@@ -260,8 +201,48 @@ layout: base.njk
         </div>
     </section>
 
+    <!-- Rychlý dotaz na daňovou poradkyni -->
+    <section class="section" id="dotaz">
+        <div class="container quick">
+            <div class="quick-intro">
+                <span class="eyebrow">Daňové poradenství</span>
+                <h2>Máte dotaz? Zeptejte se <span class="hl">přímo daňové poradkyně</span></h2>
+                <p>Řešíte konkrétní daňovou otázku a nevíte si rady? Napište ji sem. Dotaz přijde přímo Janě Coufalové a odpověď dostanete e-mailem.</p>
+                <ul class="quick-points">
+                    <li><span class="r-ico">{{ icon("lock") }}</span><div><strong>Diskrétně</strong><small>Váš dotaz čte jen daňová poradkyně, která je vázaná mlčenlivostí.</small></div></li>
+                    <li><span class="r-ico">{{ icon("mail") }}</span><div><strong>Odpověď e-mailem</strong><small>Ozveme se co nejdříve přímo na vaši adresu.</small></div></li>
+                    <li><span class="r-ico">{{ icon("smile") }}</span><div><strong>Nezávazně</strong><small>Pokud dotaz vyžaduje podrobnější rozbor, domluvíme se na konzultaci.</small></div></li>
+                </ul>
+            </div>
+            <div class="quick-card">
+                <form class="consultation-form js-formspree" data-form-name="rychly_dotaz" action="https://formspree.io/f/mnpjlllp" method="POST">
+                    <input type="hidden" name="_subject" value="Rychlý dotaz z webu JRC Consult">
+                    <input type="hidden" name="typ" value="Rychlý dotaz na daňovou poradkyni">
+                    <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="q-name">Jméno <span class="req">*</span></label>
+                            <input type="text" id="q-name" name="jmeno" required placeholder="Jan Novák">
+                        </div>
+                        <div class="form-group">
+                            <label for="q-email">E-mail <span class="req">*</span></label>
+                            <input type="email" id="q-email" name="email" required placeholder="jan@email.cz">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="q-message">Váš dotaz <span class="req">*</span></label>
+                        <textarea id="q-message" name="dotaz" rows="5" required placeholder="Dobrý den, chtěl bych se zeptat…"></textarea>
+                    </div>
+                    <p class="form-gdpr">Odesláním berete na vědomí, že vaše údaje použijeme pouze k odpovědi na dotaz.</p>
+                    <button type="submit" class="btn btn-accent">{{ icon("send") }}Odeslat dotaz</button>
+                    <p class="form-response" role="status"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Proč my / pro koho -->
-    <section class="section">
+    <section class="section section-soft">
         <div class="container">
             <div class="sec-head">
                 <span class="eyebrow">Proč JRC Consult</span>
@@ -270,7 +251,7 @@ layout: base.njk
             </div>
             <div class="reasons">
                 <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Převezmeme účetnictví kdykoliv</h3><p>I v průběhu roku. Zajistíme hladký přechod a návaznost na předchozí období.</p></div>
-                <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Zastupujeme vás na úřadech</h3><p>Komunikace s finančním úřadem, OSSZ i pojišťovnami včetně řešení kontrol.</p></div>
+                <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Zastupujeme vás na úřadech</h3><p>Komunikace s finančním úřadem, OSSZ i zdravotními pojišťovnami včetně řešení kontrol.</p></div>
                 <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Jsme 100% online</h3><p>Skeny, PDF i napojení na systémy. Žádné vození šanonů a zbytečné schůzky.</p></div>
                 <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Rostoucí společnosti</h3><p>Stabilizujeme účetní procesy, zavedeme reporting a odstraníme administrativní brzdy.</p></div>
                 <div class="reason"><span class="r-ico">{{ icon("check") }}</span><h3>Malé a střední s.r.o.</h3><p>Jistota bezchybného účetnictví, včasných přiznání a plné podpory daňového poradce.</p></div>
@@ -296,16 +277,16 @@ layout: base.njk
         </div>
     </section>
 
-    <!-- Aktuality -->
+    <!-- Poradna (články z administrace) -->
     {% if collections.clanky.length %}
-    <section class="section" id="aktuality">
+    <section class="section" id="poradna">
         <div class="container">
             <div class="sec-head sec-head-row">
                 <div>
-                    <span class="eyebrow">Aktuality</span>
-                    <h2>Novinky ze světa <span class="hl">účetnictví a daní</span></h2>
+                    <span class="eyebrow">Poradna</span>
+                    <h2>Novinky, rady a <span class="hl">odpovědi na časté dotazy</span></h2>
                 </div>
-                <a href="/clanky/" class="btn btn-outline">Všechny články {{ icon("arrow-right") }}</a>
+                <a href="/poradna/" class="btn btn-outline">Celá poradna {{ icon("arrow-right") }}</a>
             </div>
             <div class="news-grid">
                 {% for clanek in collections.clanky | limit(3) %}
@@ -316,8 +297,62 @@ layout: base.njk
     </section>
     {% endif %}
 
+    <!-- Balíčky -->
+    <section class="section section-soft" id="balicky">
+        <div class="container">
+            <div class="sec-head">
+                <span class="eyebrow">Balíčky služeb</span>
+                <h2>Vyberte si balíček <span class="hl">na míru</span></h2>
+                <p>Přehledné měsíční paušály bez skrytých poplatků. Balíček můžete kdykoliv rozšířit podle toho, jak roste vaše firma.</p>
+            </div>
+            <div class="pricing">
+                <div class="price-card">
+                    <span class="price-name">Starter</span>
+                    <p class="price-desc">Pro malé s.r.o. a OSVČ, které chtějí mít účetnictví i daně v pořádku.</p>
+                    <div class="price-amount">10 000 <span class="price-unit">Kč / měsíc</span></div>
+                    <ul class="price-list">
+                        <li>{{ icon("check") }}Podvojné účetnictví nebo daňová evidence (OSVČ)</li>
+                        <li>{{ icon("check") }}Do 50 dokladů měsíčně</li>
+                        <li>{{ icon("check") }}Daňové přiznání k dani z příjmů a k DPH</li>
+                        <li>{{ icon("check") }}1 hodina daňového poradenství měsíčně</li>
+                        <li>{{ icon("check") }}Online předávání dokladů</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-plan="Balíček Starter">Mám zájem o Starter</a>
+                </div>
+                <div class="price-card price-featured">
+                    <span class="price-badge">Nejoblíbenější</span>
+                    <span class="price-name">Pro</span>
+                    <p class="price-desc">Pro rostoucí s.r.o. a plátce DPH, kteří chtějí víc prostoru pro poradenství.</p>
+                    <div class="price-amount">20 000 <span class="price-unit">Kč / měsíc</span></div>
+                    <ul class="price-list">
+                        <li>{{ icon("check") }}<span><strong>Vše ze Starter</strong>, navíc:</span></li>
+                        <li>{{ icon("check") }}2 hodiny daňového poradce měsíčně</li>
+                        <li>{{ icon("check") }}Kontrolní a souhrnná hlášení</li>
+                        <li>{{ icon("check") }}Mzdová agenda</li>
+                        <li>{{ icon("check") }}Pravidelný přehled hospodaření</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-accent btn-full" data-plan="Balíček Pro">Mám zájem o Pro</a>
+                </div>
+                <div class="price-card">
+                    <span class="price-name">Pro Max</span>
+                    <p class="price-desc">Pro větší firmy, které chtějí daňového poradce jako dlouhodobého partnera.</p>
+                    <div class="price-amount"><span class="price-from">od</span> 30 000 <span class="price-unit">Kč / měsíc</span></div>
+                    <ul class="price-list">
+                        <li>{{ icon("check") }}<span><strong>Vše z Pro</strong>, navíc:</span></li>
+                        <li>{{ icon("check") }}Rozsah služeb podle individuální domluvy</li>
+                        <li>{{ icon("check") }}Daňové poradenství a strategie bez omezení hodin</li>
+                        <li>{{ icon("check") }}Zastupování na úřadech a při kontrolách</li>
+                        <li>{{ icon("check") }}Osobní konzultace podle potřeby</li>
+                    </ul>
+                    <a href="#kontakt" class="btn btn-outline btn-full" data-plan="Balíček Pro Max">Mám zájem o Pro Max</a>
+                </div>
+            </div>
+            <p class="pricing-note">Uvedené ceny jsou orientační a bez DPH. Přesnou nabídku připravíme po nezávazné konzultaci podle rozsahu vaší agendy.</p>
+        </div>
+    </section>
+
     <!-- FAQ -->
-    <section class="section section-soft" id="faq">
+    <section class="section" id="faq">
         <div class="container faq-layout">
             <div class="faq-intro">
                 <span class="eyebrow">Časté dotazy</span>
@@ -347,7 +382,7 @@ layout: base.njk
     </section>
 
     <!-- Kontakt -->
-    <section class="section" id="kontakt">
+    <section class="section section-soft" id="kontakt">
         <div class="container">
             <div class="contact-card">
                 <div class="contact-side">
@@ -371,7 +406,7 @@ layout: base.njk
                 </div>
 
                 <div class="contact-form-wrap">
-                    <form id="consultationForm" class="consultation-form" action="https://formspree.io/f/mnpjlllp" method="POST">
+                    <form id="consultationForm" class="consultation-form js-formspree" data-form-name="poptavka" action="https://formspree.io/f/mnpjlllp" method="POST">
                         <input type="hidden" name="_subject" value="Nová poptávka z webu JRC Consult">
                         <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="form-row">
@@ -393,7 +428,7 @@ layout: base.njk
                                 <label for="serviceType">O co máte zájem?</label>
                                 <select id="serviceType" name="sluzba">
                                     <option value="Kompletní vedení účetnictví / daňová evidence">Vedení účetnictví / daňová evidence</option>
-                                    <option value="Daňové poradenství a přiznání">Daňové poradenství a přiznání</option>
+                                    <option value="Daňové poradenství a strategie">Daňové poradenství a strategie</option>
                                     <option value="Mzdová agenda">Mzdová agenda</option>
                                     <option value="Nastavení procesů a poradenství pro rostoucí firmy">Poradenství pro rostoucí firmy</option>
                                     <option value="Balíček Starter">Balíček Starter</option>
@@ -404,12 +439,22 @@ layout: base.njk
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="turnover">Roční obrat firmy</label>
+                            <select id="turnover" name="obrat">
+                                <option value="Neuvedeno">Vyberte…</option>
+                                <option value="Do 5 mil. Kč">Do 5 mil. Kč</option>
+                                <option value="5–10 mil. Kč">5–10 mil. Kč</option>
+                                <option value="10–50 mil. Kč">10–50 mil. Kč</option>
+                                <option value="Nad 50 mil. Kč">Nad 50 mil. Kč</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="message">Zpráva <span class="req">*</span></label>
                             <textarea id="message" name="zprava" rows="5" required placeholder="Dobrý den, mám zájem o…"></textarea>
                         </div>
                         <p class="form-gdpr">Odesláním formuláře berete na vědomí, že vaše osobní údaje zpracujeme pouze za účelem vyřízení poptávky.</p>
                         <button type="submit" class="btn btn-accent">{{ icon("send") }}Odeslat zprávu</button>
-                        <p id="formResponse" class="form-response" role="status"></p>
+                        <p class="form-response" role="status"></p>
                     </form>
                 </div>
             </div>

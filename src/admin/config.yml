@@ -14,9 +14,9 @@ public_folder: /uploads
 
 collections:
   - name: clanky
-    label: Články
+    label: Poradna (články)
     label_singular: článek
-    description: Aktuality, vyhlášky a novinky zobrazené na webu.
+    description: Články do sekce Poradna – novinky, vyhlášky, rady a odpovědi na časté dotazy.
     folder: src/clanky
     create: true
     slug: "{{slug}}"
@@ -28,6 +28,7 @@ collections:
       - { label: Mzdy, field: kategorie, pattern: Mzdy }
       - { label: Účetnictví, field: kategorie, pattern: Účetnictví }
       - { label: Novinky, field: kategorie, pattern: Novinky }
+      - { label: Časté dotazy, field: kategorie, pattern: Časté dotazy }
     fields:
       - label: Nadpis
         name: title
@@ -41,7 +42,7 @@ collections:
       - label: Kategorie
         name: kategorie
         widget: select
-        options: [Vyhlášky a legislativa, Daně, Mzdy, Účetnictví, Novinky]
+        options: [Vyhlášky a legislativa, Daně, Mzdy, Účetnictví, Časté dotazy, Novinky]
         default: Novinky
       - label: Krátký úvod
         name: perex

@@ -43,10 +43,10 @@
 
             <nav class="main-nav" aria-label="Hlavní navigace">
                 <a href="/#sluzby">Služby</a>
-                <a href="/#balicky">Balíčky</a>
                 <a href="/#o-nas">O nás</a>
-                <a href="/#proces">Jak pracujeme</a>
-                {% if collections.clanky.length %}<a href="/#aktuality">Aktuality</a>{% endif %}
+                <a href="/#dotaz">Rychlý dotaz</a>
+                {% if collections.clanky.length %}<a href="/#poradna">Poradna</a>{% endif %}
+                <a href="/#balicky">Balíčky</a>
                 <a href="/#faq">FAQ</a>
             </nav>
 
@@ -65,11 +65,11 @@
             <div class="container">
                 <nav class="mobile-nav" aria-label="Mobilní navigace">
                     <a href="/#sluzby">Služby</a>
-                    <a href="/#balicky">Balíčky</a>
                     <a href="/#o-nas">O nás</a>
-                    <a href="/#proc-my">Proč my</a>
+                    <a href="/#dotaz">Rychlý dotaz</a>
                     <a href="/#proces">Jak pracujeme</a>
-                    {% if collections.clanky.length %}<a href="/#aktuality">Aktuality</a>{% endif %}
+                    {% if collections.clanky.length %}<a href="/#poradna">Poradna</a>{% endif %}
+                    <a href="/#balicky">Balíčky</a>
                     <a href="/#faq">FAQ</a>
                 </nav>
                 <a href="/#kontakt" class="btn btn-accent btn-full">{{ icon("send") }}Nezávazná konzultace</a>
@@ -112,10 +112,10 @@
                 <h4>Navigace</h4>
                 <ul>
                     <li><a href="/#sluzby">Služby</a></li>
-                    <li><a href="/#balicky">Balíčky</a></li>
                     <li><a href="/#o-nas">O nás</a></li>
-                    <li><a href="/#proces">Jak pracujeme</a></li>
-                    {% if collections.clanky.length %}<li><a href="/clanky/">Aktuality</a></li>{% endif %}
+                    <li><a href="/#dotaz">Rychlý dotaz</a></li>
+                    {% if collections.clanky.length %}<li><a href="/poradna/">Poradna</a></li>{% endif %}
+                    <li><a href="/#balicky">Balíčky</a></li>
                     <li><a href="/#faq">Časté dotazy</a></li>
                 </ul>
             </div>
