@@ -9,6 +9,12 @@ local_backend: true
 
 locale: cs
 
+# Adresy článků bez diakritiky a mezer („Nová vyhláška“ → nova-vyhlaska)
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
 media_folder: src/uploads
 public_folder: /uploads
 
