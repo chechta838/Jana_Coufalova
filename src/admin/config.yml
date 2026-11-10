@@ -1,9 +1,9 @@
-# Test na Cloudflare: přihlášení přes GitHub pomocí vlastního Workeru (složka cloudflare-auth)
+# Cloudflare: přihlášení přes GitHub pomocí vlastního Workeru (cloudflare-auth/worker.js).
+# Adresu přihlášení (base_url) doplňuje admin/index.html podle adresy webu.
 backend:
   name: github
   repo: chechta838/Jana_Coufalova
   branch: cloudflare
-  base_url: https://DOPLNIT-ADRESU-WORKERU.workers.dev
   auth_endpoint: auth
 
 # Lokální zkoušení: administrace zapisuje přímo do složky projektu (npm start)

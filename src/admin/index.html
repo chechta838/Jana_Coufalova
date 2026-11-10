@@ -7,6 +7,12 @@
     <title>Administrace | JRC Consult</title>
 </head>
 <body>
+    <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
+    <script>
+        // Přihlášení běží na stejné adrese jako web (…/auth), ať je to workers.dev, nebo jrcconsult.cz.
+        // Nastavení se sloučí s config.yml.
+        CMS.init({ config: { backend: { base_url: window.location.origin } } });
+    </script>
 </body>
 </html>

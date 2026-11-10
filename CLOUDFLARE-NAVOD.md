@@ -1,43 +1,40 @@
-# Test webu JRC Consult na Cloudflare
+# Test webu JRC Consult na Cloudflare (Workers)
 
 Tahle složka je samostatná větev `cloudflare` stejného projektu na GitHubu.
 Web na Netlify (větev `main`) zůstává beze změny. Testovací články se ukládají jen do větve `cloudflare`.
 
-## 1. Účet
-- https://dash.cloudflare.com/sign-up (ideálně na itjrcconsult@gmail.com)
+Jeden projekt na Cloudflare dělá obojí: zobrazuje web (`_site`) a obstarává přihlášení
+do administrace (`/auth`, `/callback` – soubor `cloudflare-auth/worker.js`). Nastavení je ve `wrangler.jsonc`.
 
-## 2. Web (Cloudflare Pages)
-1. Workers & Pages → Create → záložka **Pages** → **Import an existing Git repository**
-   (pokud se nabízí jen Workers, dole odkaz „Looking to deploy Pages? Get started“)
-2. Připojit GitHub → projekt `chechta838/Jana_Coufalova`
-3. Nastavení:
-   - Project name: `jrc-consult`
-   - Production branch: **`cloudflare`**
-   - Framework preset: None
-   - Build command: `npm run build`
-   - Build output directory: `_site`
-4. Save and Deploy → web poběží na `https://jrc-consult.pages.dev` (případně s jinou koncovkou)
+## 1. Projekt
+Workers & Pages → Create → Import a repository → `chechta838/Jana_Coufalova`
+- Project name: `jana-coufalova` (musí odpovídat `name` ve `wrangler.jsonc`)
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Preview command: `npx wrangler preview` (nechat)
+→ Deploy
 
-## 3. Přihlašovací Worker
-1. Workers & Pages → Create → **Worker** → název `jrc-cms-auth` → Deploy
-2. Edit code → celý obsah nahradit souborem `cloudflare-auth/worker.js` → Deploy
-3. Adresa Workeru: `https://jrc-cms-auth.<vaše-jméno>.workers.dev`
+## 2. Větev
+Pokud první sestavení vezme větev `main` a selže:
+projekt → Settings → Build → Branch control → Production branch: **`cloudflare`** → uložit → spustit znovu
+Web pak běží na `https://jana-coufalova.<vaše-jméno>.workers.dev`
 
-## 4. GitHub OAuth aplikace (nová, jen pro Cloudflare)
-1. https://github.com/settings/developers → OAuth Apps → New OAuth App
-   - Application name: `JRC Consult – administrace (Cloudflare)`
-   - Homepage URL: adresa z kroku 2
-   - Authorization callback URL: `https://jrc-cms-auth.<vaše-jméno>.workers.dev/callback`
-2. Zkopírovat **Client ID**, vygenerovat **Client secret**
+## 3. GitHub OAuth aplikace (nová, jen pro Cloudflare)
+https://github.com/settings/developers → OAuth Apps → New OAuth App
+- Application name: `JRC Consult – administrace (Cloudflare)`
+- Homepage URL: `https://jana-coufalova.<vaše-jméno>.workers.dev`
+- Authorization callback URL: `https://jana-coufalova.<vaše-jméno>.workers.dev/callback`
+Zkopírovat **Client ID**, vygenerovat **Client secret**
 
-## 5. Proměnné Workeru
-Worker `jrc-cms-auth` → Settings → Variables and Secrets:
-- `GITHUB_CLIENT_ID` (Text) = Client ID
-- `GITHUB_CLIENT_SECRET` (**Secret**) = Client secret
-- `ALLOWED_ORIGINS` (Text) = `https://jrc-consult.pages.dev`
-  (později přidat `,https://jrcconsult.cz`)
+## 4. Proměnné
+projekt → Settings → Variables and Secrets → Add, obě jako typ **Secret**:
+- `GITHUB_CLIENT_ID` = Client ID
+- `GITHUB_CLIENT_SECRET` = Client secret
 
-## 6. Propojení a test
-- Adresu Workeru doplnit do `src/admin/config.yml` (`base_url`) – udělá Claude
-- Otevřít `https://jrc-consult.pages.dev/admin/` → přihlásit přes GitHub
+## 5. Test
+- `https://jana-coufalova.<vaše-jméno>.workers.dev/admin/` → přihlásit přes GitHub
 - Napsat zkušební článek → publikovat → za 1–2 min zkontrolovat `/poradna/`
+
+## Doména později
+Při napojení jrcconsult.cz změnit v GitHub OAuth aplikaci Homepage a callback URL na
+`https://jrcconsult.cz` a `https://jrcconsult.cz/callback`. Nic jiného se měnit nemusí.

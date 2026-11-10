@@ -5,8 +5,8 @@
  * Proměnné (Worker → Settings → Variables and Secrets):
  *   GITHUB_CLIENT_ID      – Client ID z GitHub OAuth aplikace
  *   GITHUB_CLIENT_SECRET  – Client secret (uložit jako Secret)
- *   ALLOWED_ORIGINS       – adresy webu oddělené čárkou,
- *                           např. https://jrc-consult.pages.dev,https://jrcconsult.cz
+ *   ALLOWED_ORIGINS       – nepovinné: další adresy webu oddělené čárkou
+ *                           (adresa, na které Worker běží, je povolená vždy)
  *
  * Cesty:
  *   /auth      – přesměruje na přihlášení na GitHubu
@@ -22,9 +22,9 @@ export default {
         if (url.pathname === '/auth') return startLogin(url, env);
         if (url.pathname === '/callback') return finishLogin(request, url, env);
 
-        return new Response('JRC Consult – přihlašovací služba administrace.', {
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-        });
+        // Ostatní adresy = samotný web ze složky _site
+        if (env.ASSETS) return env.ASSETS.fetch(request);
+        return text('JRC Consult – přihlašovací služba administrace.', 200);
     },
 };
 
@@ -55,7 +55,7 @@ async function finishLogin(request, url, env) {
     const cookieState = readCookie(request, STATE_COOKIE);
 
     if (!code || !state || state !== cookieState) {
-        return reply(env, 'error', { message: 'Přihlášení vypršelo nebo bylo neplatné. Zkuste to prosím znovu.' });
+        return reply(env, url, 'error', { message: 'Přihlášení vypršelo nebo bylo neplatné. Zkuste to prosím znovu.' });
     }
 
     const res = await fetch('https://github.com/login/oauth/access_token', {
@@ -71,15 +71,15 @@ async function finishLogin(request, url, env) {
     const data = await res.json().catch(() => ({}));
 
     if (!data.access_token) {
-        return reply(env, 'error', { message: data.error_description || 'GitHub nevrátil přístupový token.' });
+        return reply(env, url, 'error', { message: data.error_description || 'GitHub nevrátil přístupový token.' });
     }
 
-    return reply(env, 'success', { token: data.access_token, provider: 'github' });
+    return reply(env, url, 'success', { token: data.access_token, provider: 'github' });
 }
 
 /** Stránka v přihlašovacím okně: předá výsledek administraci (jen povoleným adresám) a zavře se. */
-function reply(env, status, content) {
-    const allowed = (env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
+function reply(env, url, status, content) {
+    const allowed = [url.origin, ...(env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean)];
     const message = `authorization:github:${status}:${JSON.stringify(content)}`;
 
     const html = `<!doctype html><html lang="cs"><head><meta charset="utf-8"><title>Přihlášení</title></head>
