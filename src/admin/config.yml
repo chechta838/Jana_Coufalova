@@ -1,8 +1,10 @@
-# Ostrý provoz: přihlášení do administrace přes GitHub
+# Test na Cloudflare: přihlášení přes GitHub pomocí vlastního Workeru (složka cloudflare-auth)
 backend:
   name: github
   repo: chechta838/Jana_Coufalova
-  branch: main
+  branch: cloudflare
+  base_url: https://DOPLNIT-ADRESU-WORKERU.workers.dev
+  auth_endpoint: auth
 
 # Lokální zkoušení: administrace zapisuje přímo do složky projektu (npm start)
 local_backend: true
