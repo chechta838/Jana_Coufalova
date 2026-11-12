@@ -7,6 +7,16 @@
     <title>Administrace | JRC Consult</title>
 </head>
 <body>
+    <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/decap-cms@^3.6.0/dist/decap-cms.js"></script>
+    <script>
+        // Na Netlify a při lokálním zkoušení přihlašuje Netlify / lokální server.
+        // Jinde (Cloudflare, jrcconsult.cz) přihlašuje vlastní Worker na stejné adresě: …/auth
+        var host = window.location.hostname;
+        var useWorker = !/netlify\.app$/.test(host) && host !== 'localhost' && host !== '127.0.0.1';
+        CMS.init(useWorker
+            ? { config: { backend: { base_url: window.location.origin, auth_endpoint: 'auth' } } }
+            : {});
+    </script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 # Ostrý provoz: přihlášení do administrace přes GitHub
+# (na Cloudflare přes Worker cloudflare-auth/worker.js – nastavuje admin/index.html)
 backend:
   name: github
   repo: chechta838/Jana_Coufalova

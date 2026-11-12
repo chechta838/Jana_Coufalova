@@ -3,6 +3,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("src/script.js");
     eleventyConfig.addPassthroughCopy("src/favicon.svg");
     eleventyConfig.addPassthroughCopy("src/logo.svg");
+    eleventyConfig.addPassthroughCopy("src/_headers");
     eleventyConfig.addPassthroughCopy("src/admin");
     eleventyConfig.addPassthroughCopy("src/uploads");
 
