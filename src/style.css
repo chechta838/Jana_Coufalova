@@ -1860,6 +1860,33 @@ body.menu-open {
     flex-shrink: 0;
 }
 
+.article-perex a {
+    color: var(--accent-light);
+    text-underline-offset: 3px;
+}
+
+.article-perex a:hover {
+    color: var(--white);
+}
+
+.footer-whistle {
+    margin-top: 18px;
+    max-width: 300px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+    color: #6F7A98;
+}
+
+.footer-col .footer-whistle a {
+    color: #9BA6C4;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-col .footer-whistle a:hover {
+    color: var(--white);
+}
+
 .footer-bottom {
     display: flex;
     flex-wrap: wrap;

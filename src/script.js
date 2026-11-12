@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rychly_dotaz: {
             sending: 'Odesílám dotaz...',
             success: 'Děkujeme! Dotaz jsme přijali a odpověď vám pošleme e-mailem.',
-            error: 'Dotaz se nepodařilo odeslat. Zkuste to prosím znovu, nebo napište na j.ucetnictvi@gmail.com.'
+            error: 'Dotaz se nepodařilo odeslat. Zkuste to prosím znovu, nebo napište na info@jrcconsult.cz.'
         }
     };
 
