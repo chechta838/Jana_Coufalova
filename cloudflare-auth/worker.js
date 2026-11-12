@@ -19,6 +19,11 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
 
+        // Jediná hlavní adresa pro návštěvníky i vyhledávače: www a workers.dev -> jrcconsult.cz
+        if (url.hostname === 'www.jrcconsult.cz' || url.hostname.endsWith('.workers.dev')) {
+            return Response.redirect(`https://jrcconsult.cz${url.pathname}${url.search}`, 301);
+        }
+
         if (url.pathname === '/auth') return startLogin(url, env);
         if (url.pathname === '/callback') return finishLogin(request, url, env);
 
