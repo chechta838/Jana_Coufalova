@@ -219,7 +219,7 @@ layout: base.njk
                 </ul>
             </div>
             <div class="quick-card">
-                <form class="consultation-form js-formspree" data-form-name="rychly_dotaz" action="https://formspree.io/f/mnpdnvyz" method="POST">
+                <form class="consultation-form js-formspree" data-form-name="rychly_dotaz" action="https://formspree.io/f/mjywkrze" method="POST">
                     <input type="hidden" name="_subject" value="Rychlý dotaz z webu JRC Consult">
                     <input type="hidden" name="typ" value="Rychlý dotaz na daňovou poradkyni">
                     <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -414,6 +414,7 @@ layout: base.njk
                 <div class="contact-form-wrap">
                     <form id="consultationForm" class="consultation-form js-formspree" data-form-name="poptavka" action="https://formspree.io/f/mjywkrze" method="POST">
                         <input type="hidden" name="_subject" value="Nová poptávka z webu JRC Consult">
+                        <input type="hidden" name="typ" value="Poptávka (velký formulář)">
                         <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="form-row">
                             <div class="form-group">
@@ -445,9 +446,9 @@ layout: base.njk
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="turnover">Roční obrat firmy</label>
-                            <select id="turnover" name="obrat">
-                                <option value="Neuvedeno">Vyberte…</option>
+                            <label for="turnover">Roční obrat firmy <span class="req">*</span></label>
+                            <select id="turnover" name="obrat" required>
+                                <option value="" disabled selected>Vyberte…</option>
                                 <option value="Do 5 mil. Kč">Do 5 mil. Kč</option>
                                 <option value="5–10 mil. Kč">5–10 mil. Kč</option>
                                 <option value="10–50 mil. Kč">10–50 mil. Kč</option>
