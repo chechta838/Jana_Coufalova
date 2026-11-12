@@ -2353,3 +2353,8 @@ body.menu-open {
         flex: 1;
     }
 }
+
+.form-gdpr a {
+    color: var(--accent-ink);
+    text-underline-offset: 2px;
+}
