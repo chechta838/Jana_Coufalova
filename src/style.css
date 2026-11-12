@@ -1812,8 +1812,7 @@ body.menu-open {
 }
 
 .form-honeypot {
-    position: absolute;
-    left: -9999px;
+    display: none !important;
 }
 
 .form-response {
